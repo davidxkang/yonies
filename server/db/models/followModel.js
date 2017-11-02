@@ -1,15 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define('category', {
-    category_id: {
+  const Follow = sequelize.define('follow', {
+    follow_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    category_id: {
+      type: DataTypes.INTEGER
+    },
+    uid: {
       type: DataTypes.STRING
     }
   }, {
     timestamps: false
   })
-  return Category
+  return Follow
 }

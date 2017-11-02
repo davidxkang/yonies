@@ -1,17 +1,3 @@
-// const Sequelize = require('sequelize');
-// const db = require('../db');
-
-// const HashTag = db.define('user', {
-//   PostId: {
-//     type: Sequelize.STRING
-//   },
-//   Label: {
-//     type: Sequelize.STRING
-//   }
-// }, {
-//   timestamps: false,
-// })
-
 module.exports = (sequelize, DataTypes) => {
   const HashTag = sequelize.define('hashtag', {
     post_id: {
@@ -25,7 +11,3 @@ module.exports = (sequelize, DataTypes) => {
   })
   return HashTag
 }
-
-// HashTag.sync();
-
-// module.exports = HashTag;

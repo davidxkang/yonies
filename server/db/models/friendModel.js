@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Friend = sequelize.define('friend', {
     user_id: {

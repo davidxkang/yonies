@@ -60,6 +60,7 @@ import { ChatComponent } from './chat/chat.component';
 import { VideoShareComponent } from './video-share/video-share.component';
 import { FollowingComponent } from './following/following.component';
 import { FeaturedComponent } from './featured/featured.component';
+import { FollowService } from './services/follow.service';``
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { FeaturedComponent } from './featured/featured.component';
     HashService,
     ScriptService,
     SocketService,
-    FormBuilder
+    FormBuilder,
+    FollowService
   ],
   bootstrap: [AppComponent]
 })

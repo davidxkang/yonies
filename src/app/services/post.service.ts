@@ -90,8 +90,6 @@ export class PostService {
   }
 
   addPost({ url }): Observable<any> {
-    // console.log(post, '<<<<<< POST')
-    console.log(typeof url, '<<<<<< POST')
     return this.http.post('http://localhost:4201/posts', {
       text: url, 
       type: 'post'
@@ -100,7 +98,8 @@ export class PostService {
   }
 
   deletePost(post) {
-    this.http.delete(`/post/${post.id}`)
+    return this.http.delete(`http://localhost:4201/posts/${post.id}`)
+    .map((res) => {return res.json()})
   }
 
   getComments(postid): Observable<any> {
@@ -109,9 +108,9 @@ export class PostService {
     .map((res) => {return res.json()})
   }
 
-  addComment(comment, id): Observable<any> {
+  addComment({ comment }, id): Observable<any> {
     return this.http.post('http://localhost:4201/posts', {
-      text: comment.comment,
+      text: comment,
       type: 'comment',
       parent: id
     })

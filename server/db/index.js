@@ -34,6 +34,7 @@ const sequelize = new Sequelize('yoniesDB', 'ngdd', 'plantlife', {
   db.Like = require('../db/models/likeModel')(sequelize, Sequelize);
   db.Message = require('../db/models/messageModel')(sequelize, Sequelize);
   db.Category = require('../db/models/categoryModel')(sequelize, Sequelize);
+  db.Follow = require('../db/models/followModel')(sequelize, Sequelize);
   db.Friend = require('../db/models/friendModel')(sequelize, Sequelize);
   db.HashTag = require('../db/models/hashTagModel')(sequelize, Sequelize);
   db.Participant = require('../db/models/participantModel')(sequelize, Sequelize);

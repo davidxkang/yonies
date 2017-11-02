@@ -7,7 +7,7 @@ import { HashService } from '../services/hash.service';
 import { LikesService } from '../services/likes.service';
 import { ScriptService } from '../services/script.service';
 import { AuthService } from '../services/auth.services';
-import { CategoryService } from '../services/category.service';
+import { FollowService } from '../services/follow.service';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -32,7 +32,7 @@ export class ContentFeedComponent implements OnInit {
     private sanitizer: DomSanitizer, 
     private postService: PostService, 
     private authService: AuthService, 
-    private categoryService: CategoryService, 
+    private followService: FollowService, 
     private afAuth: AngularFireAuth,
     private fb: FormBuilder) {
 
@@ -91,7 +91,7 @@ export class ContentFeedComponent implements OnInit {
     this.content = [];
     this.afAuth.authState.subscribe((data) => {
       console.log(data.uid, '<<<<<< DATA.uid')
-      this.categoryService.getCategory({uid: data.uid})
+      this.followService.getFollow({uid: data.uid})
       .subscribe((data) => {
         data.forEach((cat) => {
           this.cats.push(cat.name);

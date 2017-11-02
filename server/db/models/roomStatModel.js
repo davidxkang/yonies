@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = (sequelize, DataTypes) => {
   const RoomStat = sequelize.define('roomstat', {
     room_id: {
@@ -32,11 +30,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return RoomStat;
 } 
-
-
-// RoomStat.belongsTo(User);
-// RoomState.hasMany(Participant);
-
-// RoomStat.sync();
-
-// module.exports = RoomStat;

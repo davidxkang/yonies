@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('message', {
     video_dm: {
@@ -20,10 +18,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Message;
 } 
-
-// Message.belongsTo(User);
-// Message.belongsTo(Friend);
-
-// Message.sync();
-
-// module.exports = Message;

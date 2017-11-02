@@ -6,6 +6,7 @@ const likeController = require('../controllers/likesController');
 const messageController = require('../controllers/messageController');
 const friendController = require('../controllers/friendController');
 const categoryController = require('../controllers/categoryController');
+const followController = require('../controllers/followController');
 const roomstatController = require('../controllers/roomstatController');
 const hashController = require('../controllers/hashController');
 
@@ -44,6 +45,11 @@ router.delete('/friends', friendController.deleteFriend)
 router.get('/categories/:id', categoryController.getCategory)
 router.post('/categories', categoryController.addCategory)
 router.delete('/categories', categoryController.deleteCategory)
+
+//follows
+router.get('/follows/:id', followController.getFollow)
+router.post('/follows', followController.addFollow)
+router.delete('/follows', followController.deleteFollow)
 
 //roomstat
 router.get('/rooms/:id', roomstatController.getRoomstat)

@@ -7,7 +7,7 @@ import { HashService } from '../services/hash.service';
 import { LikesService } from '../services/likes.service';
 import { ScriptService } from '../services/script.service';
 import { AuthService } from '../services/auth.services';
-import { CategoryService } from '../services/category.service';
+import { FollowService } from '../services/follow.service';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -27,7 +27,15 @@ export class FollowingComponent implements OnInit {
   friends: any;
   liked: any;
 
-  constructor(private friendService: FriendService, private likeService: LikesService, private sanitizer: DomSanitizer, private postService: PostService, private authService: AuthService, private categoryService: CategoryService, private afAuth: AngularFireAuth) {
+  constructor(
+    private friendService: FriendService, 
+    private likeService: LikesService, 
+    private sanitizer: DomSanitizer, 
+    private postService: PostService, 
+    private authService: AuthService, 
+    private followService: FollowService, 
+    private afAuth: AngularFireAuth) {
+
     this.content = [];
     this.cats = [];
     this.friends = [];
@@ -68,7 +76,7 @@ export class FollowingComponent implements OnInit {
         var friendIds = data.map((friend) => {return friend.friend_id});
         console.log(friendIds, 'friend data@@@@@@@@@@@@@@@@@')
         friendIds.forEach((id) => {
-          this.categoryService.getCategory({uid: id})
+          this.followService.getFollow({uid: id})
           .subscribe((data) => {
             console.log(data, "CAT DATA @@@@@@@@@@")
             data.forEach((cat) => {

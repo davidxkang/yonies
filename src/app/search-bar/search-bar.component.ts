@@ -5,7 +5,7 @@ import { FriendService } from '../services/friend.service';
 import { PostService } from '../services/post.service';
 import { HashService } from '../services/hash.service';
 import { LikesService } from '../services/likes.service';
-import { CategoryService } from '../services/category.service';
+import { FollowService } from '../services/follow.service';
 import { ScriptService } from '../services/script.service';
 import { AuthService } from '../services/auth.services';
 import { Http, Response, Headers } from '@angular/http';
@@ -58,7 +58,7 @@ export class SearchBarComponent implements OnInit {
     private friendService: FriendService, 
     private fb: FormBuilder, 
     private roomstatService: RoomstatService, 
-    private categoryService: CategoryService, 
+    private followService: FollowService, 
     private firebaseAuth: AngularFireAuth, 
     private likeService: LikesService, 
     private router: Router,
@@ -76,16 +76,17 @@ export class SearchBarComponent implements OnInit {
       'comment': null
     });  
     this.commentOn = false;
-    this.comments = [];
 
     this.tweets = [];
     this.twitch = [];
     this.youtube = [];
     this.content = [];
     this.users = [];
+    this.name = "";
   }
 
   toggleComment(id) {
+    this.comments = [];
     if(!this.commentOn) {
       //get request to get comments on the post id
       this.postService.getComments(id)
@@ -135,10 +136,6 @@ export class SearchBarComponent implements OnInit {
     this.myForm.reset();
   } 
 
-  test() {
-    console.log('THIS IS THE CURRENT USER', firebase.auth().currentUser)
-  }
-
   visitWall(user) {
     this.content = [];
     // console.log(user, 'user')
@@ -177,7 +174,7 @@ export class SearchBarComponent implements OnInit {
   follow(person) {
     let uid = firebase.auth().currentUser.uid;
     console.log(person, uid)
-    this.categoryService.addCategory({name: person, uid: uid})     
+    this.followService.addFollow({name: person, uid: uid})     
   }
 
   searchPosts(query) {
@@ -276,13 +273,6 @@ export class SearchBarComponent implements OnInit {
     })  
   }
 
-  //daniel, remember to delete this
-  currentUser() {
-    let user = firebase.auth().currentUser;
-    console.log(user)
-  }
-
-
   roomStart(vid) {
     console.log(vid.src['changingThisBreaksApplicationSecurity']);
 
@@ -303,14 +293,13 @@ export class SearchBarComponent implements OnInit {
 
   connectToRoom(roomId){
     console.log('room', this.roomId)
-
   } 
 
-  getName() {
-    console.log('THIS IS THE CURRENT USER', firebase.auth().currentUser)
-  }
-
   ngOnInit() {
-    this.getName();
+    // let uid = firebase.auth().currentUser.uid;
+    // this.userService.getUserById(uid)
+    //   .subscribe(data => {
+    //     console.log('HERE IS USER DATA ON PAGE LOAD!!', data)
+    //   }) 
   }
 }
